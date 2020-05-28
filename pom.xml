@@ -10,7 +10,7 @@
     <properties>
         <!--spring跟jackson版本要对应，要不然项目启动会报ClassNotFound-->
         <!--我这里直接简单粗暴，全都取最新版本的包-->
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <spring.version>5.2.2.RELEASE</spring.version>
     </properties>
 
