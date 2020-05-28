@@ -1,0 +1,33 @@
+#app{
+  width: 800px;
+  height: 400px;
+  background-color: transparent;
+}
+.globalKey{
+  border: black solid;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 13px;
+  display: inline-block;
+
+}
+.changeColor{
+  background-color: orange;
+}
+.shift{
+  border: black solid;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 13px;
+  display: inline-block;
+}
+.space{
+  border: black solid;
+  width: 300px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 13px;
+  display: inline-block;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../statics/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>键盘映射</title>
+</head>
+<body>
+
+<div id="app">
+  <!--数字-->
+  <div style="margin-left: 100px;margin-bottom: 0px">
+    <div v-for="(item,index) in items4Style"
+         :key="item.message"
+         :class="[styleClass,active==item.message ? 'changeColor' : ''] "
+         @keyup="handleClick(item.message)"
+    >
+      <p style="margin-left: 15px;margin-top: 5px">{{ item.message }}</p>
+    </div>
+  </div>
+  <!--字母第一行-->
+  <div style="margin-left: 100px;margin-bottom: 0px">
+    <span style="margin-left: 10px">&nbsp;</span>
+    <div v-for="(item,index) in items4Line1"
+         :key="item.message"
+         :class="[styleClass,active==item.message ? 'changeColor' : ''] "
+         @keyup="handleClick(item.message)"
+    >
+      <p style="margin-left: 15px;margin-top: 5px">{{ item.message }}</p>
+    </div>
+  </div>
+  <!--字母第2行-->
+  <div style="margin-left: 100px;margin-bottom: 0px">
+    <span style="margin-left: 20px">&nbsp;</span>
+    <div v-for="(item,index) in items4Line2"
+         :key="item.message"
+         :class="[styleClass,active==item.message ? 'changeColor' : ''] "
+         @keyup="handleClick(item.message)"
+    >
+      <p style="margin-left: 15px;margin-top: 5px">{{ item.message }}</p>
+    </div>
+  </div>
+  <!--左shift-->
+  <span style="margin-left: 30px">&nbsp;</span>
+  <div v-for="(item,index) in items4LineSHIFT"
+       :key="item.message"
+       :class="[styleClass4SHIFT,active==item.message ? 'changeColor' : ''] "
+       @keyup="handleClick(item.message)">
+    <p style="margin-left: 15px;margin-top: 5px">{{ item.message }}</p>
+  </div>
+  <!--字母第3行-->
+  <div v-for="(item,index) in items4Line3"
+       :key="item.message"
+       :class="[styleClass,active==item.message ? 'changeColor' : ''] "
+       @keyup="handleClick(item.message)">
+    <p style="margin-left: 15px;margin-top: 5px">{{ item.message }}</p>
+  </div>
+  <!--space-->
+  <div style="margin-left: 100px;margin-bottom: 0px">
+    <span style="margin-left: 70px">&nbsp;</span>
+    <div v-for="(item,index) in items4SPACE"
+         :key="item.message"
+         :class="[styleClass4SPACE,active==item.message ? 'changeColor' : ''] "
+         @keyup="handleClick(item.message)">
+      <p style="margin-left: 110px;margin-top: 5px">{{ item.message }}</p>
+    </div>
+  </div>
+</div>
+
+<!--主入口,js引入放在最下面防止阻塞-->
+<script src="../statics/js/app.js"></script>
+</body>
+</html>

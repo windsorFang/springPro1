@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 两个标准配置 -->
+    <!-- 默认加载静态资源，没有映射到的RL请求U交给默认的web容器中的servlet进行处理 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 添加注解驱动 -->
+    <mvc:annotation-driven>
+        <!-- json转换器 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--启用spring的一些annotation -->
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.i.pro"/>
+
+    <!-- 扫描装配：SpringMVC的配置文件，包含网站跳转逻辑的控制配置 -->
+    <!--    <context:component-scan base-package="com.i.pro" use-default-filters="false">
+            &lt;!&ndash; 只扫描控制器 &ndash;&gt;
+            <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        </context:component-scan>-->
+
+    <!--静态资源映射-->
+    <!--本项目把静态资源放在了webapp的statics目录下，资源映射如下-->
+    <mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/>
+
+
+    <!--jsp视图解析器，就是对应的webapp-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+        <!-- 配置html路径前缀 -->
+        <property name="prefix" value="/WEB-INF/page/"></property>
+        <!-- 配置URl后缀 -->
+        <property name="suffix" value=".html"></property>
+
+    </bean>
+
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--同样这里不用写/windsor/**,上下文会默认给你加上-->
+            <mvc:mapping path="/**"/>
+            <!--不拦截登陆请求,contextPath不用写，写了反而过滤不到-->
+            <mvc:exclude-mapping path="/q/login"/>
+            <bean class="config.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- json转换器 -->
+    <!--    <bean id="jsonHttpMessageConverter"
+              class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <property name="supportedMediaTypes">
+                <list>
+                    <value>text/html;charset=UTF-8</value>
+                    <value>application/json;charset=UTF-8</value>
+                </list>
+            </property>
+        </bean>-->
+
+</beans>
