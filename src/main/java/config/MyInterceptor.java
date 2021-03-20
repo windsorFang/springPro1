@@ -1,5 +1,6 @@
 package config;
 
+import com.sun.deploy.util.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -21,7 +22,6 @@ public class MyInterceptor implements HandlerInterceptor {
         logger.info("url::" + url);
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-
             logger.info(cookie.getName() + ":" + cookie.getValue());
         }
         return true;

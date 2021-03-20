@@ -24,7 +24,7 @@ public class TestController {
     @RequestMapping(path = "/qq", method = RequestMethod.GET)
     public String test() {
         logger.info("printing~~~~~~~~");
-        return "/hello";
+        return "/keyboardMapping";
     }
 
     @GetMapping("/hello")
